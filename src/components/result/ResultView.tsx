@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
-import { RotateCcw, Sparkles, Users } from "lucide-react";
+import { RotateCcw, Users } from "lucide-react";
 import { ArchetypeArt } from "@/components/art/ArchetypeArt";
 import { CARD_SIZE, PersonalityCard, type CardLayout } from "@/components/card/PersonalityCard";
 import { ScaledCard } from "@/components/card/ScaledCard";
@@ -39,7 +39,7 @@ export function ResultView() {
         <p className="max-w-xs text-muted-foreground">Take the six-question quiz to discover your personality.</p>
         <Button asChild size="lg">
           <Link href="/">
-            <Sparkles /> Discover my AI DNA
+            Discover my AI DNA
           </Link>
         </Button>
       </PageShell>

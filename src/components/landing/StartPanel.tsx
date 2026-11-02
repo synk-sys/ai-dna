@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, RotateCcw, Sparkles } from "lucide-react";
+import { ArrowRight, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { clearProgress, firstUnanswered, loadProgress, startProgress, type QuizProgress } from "@/lib/client/progress";
@@ -107,7 +107,7 @@ export function StartPanel() {
           </p>
         )}
         <Button type="submit" size="lg" variant={canResume ? "secondary" : "default"} className="w-full">
-          <Sparkles /> {canResume ? "Start fresh" : "Start the quiz"}
+          {canResume ? "Start fresh" : "Start the quiz"}
         </Button>
       </form>
     </section>
