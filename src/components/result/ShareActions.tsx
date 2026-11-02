@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Download, Loader2, Share2, X } from "lucide-react";
 import { CARD_SIZE, PersonalityCard, type CardLayout } from "@/components/card/PersonalityCard";
 import { Button } from "@/components/ui/button";
-import { cardFileName, exportSize, renderCardPng } from "@/lib/card/export";
+import { cardFileName, renderCardPng } from "@/lib/card/export";
 import { downloadBlob, isInAppBrowser, shareCardImage, shareLink, shareText, shareUrl } from "@/lib/card/share";
 import type { StoredResult } from "@/lib/client/results";
 
@@ -101,8 +101,6 @@ export function ShareActions({ result, layout }: { result: StoredResult; layout:
     }
   }
 
-  const { width, height } = exportSize(layout);
-
   return (
     <div className="w-full max-w-[360px] space-y-2">
       <div className="grid grid-cols-2 gap-2.5">
@@ -119,8 +117,7 @@ export function ShareActions({ result, layout }: { result: StoredResult; layout:
         aria-live="polite"
         className={message?.error ? "text-center text-sm text-destructive" : "text-center text-xs text-muted-foreground"}
       >
-        {message?.text ??
-          `${width}×${height} PNG${layout === "portrait" ? ", sized for Instagram Stories" : ", great for any feed"}`}
+        {message?.text}
       </p>
 
       {/* Off-screen, full-bleed copies used only for image export. */}
