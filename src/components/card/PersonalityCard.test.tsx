@@ -16,7 +16,7 @@ describe("PersonalityCard", () => {
     expect(screen.getByText("A custom line.")).toBeInTheDocument();
     expect(screen.getByText(a.superpower)).toBeInTheDocument();
     expect(screen.getByText(a.weakness)).toBeInTheDocument();
-    expect(screen.getByText(/Discover Your AI DNA/)).toBeInTheDocument();
+    expect(screen.queryByText(/Discover Your AI DNA/)).not.toBeInTheDocument();
   });
 
   it("works without a nickname", () => {

@@ -71,10 +71,7 @@ export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(
   );
 
   const footer = (
-    <div className="flex items-center justify-between text-[10px] text-white/70">
-      <span className="font-semibold" style={{ color: primary }}>
-        Discover Your AI DNA →
-      </span>
+    <div className="flex items-center justify-end text-[10px] text-white/70">
       <span>{EVENT.siteUrl ? EVENT.siteUrl.replace(/^https?:\/\//, "") : EVENT.hashtag}</span>
     </div>
   );
