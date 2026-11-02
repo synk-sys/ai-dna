@@ -1,4 +1,4 @@
-# New Project
+# AI DNA
 
 A starter built with Vite, React, TypeScript, and Tailwind CSS.
 
