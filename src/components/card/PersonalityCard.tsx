@@ -20,6 +20,8 @@ export interface PersonalityCardProps {
   layout?: CardLayout;
   /** Disable SVG animation (exports, reduced motion). */
   still?: boolean;
+  /** Square corners and no outer glow, for full-bleed image exports. */
+  bleed?: boolean;
   className?: string;
 }
 
@@ -33,7 +35,7 @@ function ownerLine(nickname?: string) {
  * the viewport.
  */
 export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(function PersonalityCard(
-  { archetypeId, nickname, description, layout = "portrait", still = false, className },
+  { archetypeId, nickname, description, layout = "portrait", still = false, bleed = false, className },
   ref,
 ) {
   const a = ARCHETYPES[archetypeId];
@@ -43,8 +45,13 @@ export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(
     width: size.width,
     height: size.height,
     background: `radial-gradient(120% 80% at 50% 0%, ${primary}40, transparent 60%), linear-gradient(165deg, ${deep} 0%, #070b1d 70%)`,
-    boxShadow: `0 0 0 1px ${primary}66, 0 30px 80px -20px ${primary}88`,
+    boxShadow: bleed ? undefined : `0 0 0 1px ${primary}66, 0 30px 80px -20px ${primary}88`,
   };
+  const shell = cn(
+    "relative flex flex-col gap-3 overflow-hidden p-5 font-sans text-white",
+    bleed ? "rounded-none" : "rounded-[28px]",
+    className,
+  );
 
   const header = (
     <div className="flex items-center justify-between text-[10px] font-semibold tracking-[0.14em] uppercase text-white/80">
@@ -72,6 +79,20 @@ export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(
     </div>
   );
 
+  const strengths = (
+    <ul className={cn("flex flex-wrap gap-1.5", layout === "portrait" && "justify-center")}>
+      {a.strengths.map((s) => (
+        <li
+          key={s}
+          className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold"
+          style={{ background: `${primary}22`, color: primary, border: `1px solid ${primary}55` }}
+        >
+          {s}
+        </li>
+      ))}
+    </ul>
+  );
+
   const traits = (
     <div className="grid grid-cols-2 gap-2">
       <div className="rounded-xl p-2.5" style={{ background: `${primary}1f`, border: `1px solid ${primary}40` }}>
@@ -92,7 +113,7 @@ export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(
       <div
         ref={ref}
         data-card-layout="square"
-        className={cn("relative flex flex-col gap-3 overflow-hidden rounded-[28px] p-5 font-sans text-white", className)}
+        className={shell}
         style={style}
       >
         {header}
@@ -112,6 +133,7 @@ export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(
           </div>
         </div>
         <p className="text-[12px] leading-snug text-white/85">{description}</p>
+        {strengths}
         {traits}
         <div className="mt-auto">{footer}</div>
       </div>
@@ -122,7 +144,7 @@ export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(
     <div
       ref={ref}
       data-card-layout="portrait"
-      className={cn("relative flex flex-col gap-3 overflow-hidden rounded-[28px] p-5 font-sans text-white", className)}
+      className={shell}
       style={style}
     >
       {header}
@@ -151,17 +173,7 @@ export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(
         </div>
       </div>
       <p className="text-center text-[12px] leading-snug text-white/85">{description}</p>
-      <ul className="flex flex-wrap justify-center gap-1.5">
-        {a.strengths.map((s) => (
-          <li
-            key={s}
-            className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold"
-            style={{ background: `${primary}22`, color: primary, border: `1px solid ${primary}55` }}
-          >
-            {s}
-          </li>
-        ))}
-      </ul>
+      {strengths}
       {traits}
       <div className="mt-auto">{footer}</div>
     </div>

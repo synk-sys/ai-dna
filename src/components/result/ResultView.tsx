@@ -11,6 +11,7 @@ import { ScaledCard } from "@/components/card/ScaledCard";
 import { PageShell } from "@/components/PageShell";
 import { Button } from "@/components/ui/button";
 import { CardReveal } from "./CardReveal";
+import { ShareActions } from "./ShareActions";
 import { clearProgress } from "@/lib/client/progress";
 import { EVENT } from "@/lib/config/event";
 import { clearResult, loadResult, type StoredResult } from "@/lib/client/results";
@@ -101,7 +102,7 @@ export function ResultView() {
             />
           </CardReveal>
         </ScaledCard>
-        <p className="text-center text-xs text-muted-foreground">Download and sharing arrive in the next build.</p>
+        <ShareActions result={result} layout={layout} />
       </section>
 
       <section className="glass space-y-4 rounded-3xl p-5">

@@ -17,6 +17,7 @@ npm run dev                  # http://localhost:3000
 | `npm run dev` | Next.js dev server |
 | `npm run build` / `npm start` | Production build and server |
 | `npm test` | Vitest unit and component tests |
+| `npm run test:e2e` | Playwright tests on mobile Chrome and mobile Safari (builds and starts the app) |
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run lint` | oxlint |
 
@@ -34,12 +35,14 @@ src/
     brand/                Logo, animated DNA helix, backdrop
     card/                 PersonalityCard (portrait 360×640, square 400×400), ScaledCard
     quiz/                 QuizFlow, AnalyzingSequence
-    result/               ResultView, CardReveal
+    result/               ResultView, CardReveal, ShareActions (download and share)
     ui/                   shadcn-style primitives
   lib/
     quiz/                 Archetypes, questions, scoring, shuffle, Zod schemas (pure, framework-free)
     client/               Device storage: in-progress answers and the attendee's result
+    card/                 PNG export (modern-screenshot) and Web Share helpers
     config/event.ts       Replaceable event branding
+e2e/                      Playwright tests: full flow, refresh recovery, PNG export, sharing, mobile layout
 ```
 
 ## Scoring
@@ -64,11 +67,21 @@ An exhaustive test scores all 46,656 possible answer sets. Each archetype wins b
 - Submissions carry a client-generated idempotency key (the session seed), so retries never create duplicates.
 - The reveal animation is cosmetic. The result is computed first, a "Skip" button appears as soon as it is ready, and reduced-motion users get a near-instant reveal.
 
+## Card download and sharing
+
+- **Download** renders a hidden, full-bleed copy of the card to PNG in the browser: 1080×1920 for Stories, 1080×1080 for Square. No server round trip is needed, so it works on flaky event Wi-Fi.
+- **Share** opens the native share sheet with the PNG attached. The image is pre-rendered about 1.5s after the result appears, because iOS Safari rejects share calls that happen too long after the tap. If file sharing isn't supported, it shares a text link instead, and if that fails too, it copies the text to the clipboard.
+- **In-app browsers** (Instagram, Facebook, LinkedIn and others) often ignore downloads. In those, Download opens the image full screen with a "press and hold to save" prompt.
+- Share text names the personality and event only, never the nickname.
+
+E2E tests download real PNGs and check their dimensions and that they aren't blank. Playwright's WebKit can't run on macOS 14 or older, so the Safari project is skipped there automatically. It runs on macOS 15+ and Linux CI.
+
 ## Roadmap
 
 - [x] **Phase 1**: attendee experience with local data and deterministic scoring
 - [ ] **Phase 2**: Firebase anonymous auth, Firestore persistence, security rules, server-side validation and rate limits
-- [ ] **Phase 3**: PNG export (Story and Square), native share, public card links with opt-in and revocation
+- [x] **Phase 3a**: PNG export (Story and Square), native share with fallbacks
+- [ ] **Phase 3b**: public card links (`/card/[publicId]`) with opt-in and revocation, which needs Phase 2
 - [ ] **Phase 4**: organizer dashboard, event controls, QR code, "What Is Toronto's AI DNA?" projector mode
 - [ ] **Phase 5**: optional Gemini personalization with fallback and caching
 - [ ] **Phase 6**: load testing, Playwright mobile tests, App Hosting config, deployment and event-day runbooks
