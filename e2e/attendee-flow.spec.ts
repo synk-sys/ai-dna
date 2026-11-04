@@ -64,10 +64,8 @@ for (const primary of ARCHETYPE_IDS) {
         const inset = (box.width * 36) / 1080;
         const issues: string[] = [];
         const rect = (sel: string) => card.querySelector(sel)!.getBoundingClientRect();
-        const footer = rect(".dna-card__footer");
-        const insights = rect(".dna-card__insights");
-        if (footer.bottom > box.bottom - inset) issues.push(`${layout}: footer crosses the frame`);
-        if (insights.bottom > footer.top + 1) issues.push(`${layout}: insights overlap the footer`);
+        if (rect(".dna-card__insights").bottom > box.bottom - inset) issues.push(`${layout}: insights cross the frame`);
+        if (rect(".dna-card__event").top < box.top + inset) issues.push(`${layout}: header crosses the frame`);
         for (const sel of [".dna-card__event", ".dna-card__owner", ".dna-card__title > span:last-child", ".dna-card__description"]) {
           const r = rect(sel);
           if (r.left < box.left + inset || r.right > box.right - inset) issues.push(`${layout}: ${sel} crosses the frame`);

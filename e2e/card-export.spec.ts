@@ -1,6 +1,9 @@
 import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
-import { completeQuiz, distinctColors, pngSize } from "./helpers";
+import { artColors, completeQuiz, pngSize } from "./helpers";
+
+// A real export scores well above this in the artwork area; one that lost its image scores near 1.
+const MIN_ART_COLORS = 8;
 
 test.describe("card PNG export", () => {
   test("downloads a 1080×1920 story PNG", async ({ page }, testInfo) => {
@@ -14,7 +17,7 @@ test.describe("card PNG export", () => {
     await download.saveAs(path);
     const buf = await readFile(path);
     expect(pngSize(buf)).toEqual({ width: 1080, height: 1920 });
-    expect(await distinctColors(page, buf)).toBeGreaterThan(25);
+    expect(await artColors(page, buf, "story")).toBeGreaterThan(MIN_ART_COLORS);
     await expect(page.getByText(/Card saved/)).toBeVisible();
   });
 
@@ -30,7 +33,21 @@ test.describe("card PNG export", () => {
     await download.saveAs(path);
     const buf = await readFile(path);
     expect(pngSize(buf)).toEqual({ width: 1080, height: 1080 });
-    expect(await distinctColors(page, buf)).toBeGreaterThan(25);
+    expect(await artColors(page, buf, "square")).toBeGreaterThan(MIN_ART_COLORS);
+  });
+
+  test("shows an error instead of exporting a card with no art, then recovers", async ({ page }, testInfo) => {
+    await page.route("**/art/**", (route) => route.abort());
+    await completeQuiz(page, "creator");
+    await page.getByRole("button", { name: "Download" }).click();
+    await expect(page.getByText(/couldn't create your image/)).toBeVisible();
+
+    await page.unroute("**/art/**");
+    const downloadPromise = page.waitForEvent("download");
+    await page.getByRole("button", { name: "Download" }).click();
+    const path = testInfo.outputPath("retry.png");
+    await (await downloadPromise).saveAs(path);
+    expect(await artColors(page, await readFile(path), "story")).toBeGreaterThan(MIN_ART_COLORS);
   });
 
   test("shares the PNG through the native share sheet", async ({ page }) => {

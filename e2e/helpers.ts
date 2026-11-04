@@ -20,24 +20,38 @@ export function pngSize(buf: Buffer): { width: number; height: number } {
   return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
 }
 
-/** Decodes a PNG in the page and counts distinct colors on a sample grid, to catch blank exports. */
-export async function distinctColors(page: Page, buf: Buffer): Promise<number> {
-  return page.evaluate(async (b64) => {
-    const img = new Image();
-    img.src = `data:image/png;base64,${b64}`;
-    await img.decode();
-    const canvas = document.createElement("canvas");
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext("2d")!;
-    ctx.drawImage(img, 0, 0);
-    const colors = new Set<string>();
-    for (let y = 0; y < 20; y++) {
-      for (let x = 0; x < 20; x++) {
-        const d = ctx.getImageData(Math.floor(((x + 0.5) / 20) * img.naturalWidth), Math.floor(((y + 0.5) / 20) * img.naturalHeight), 1, 1).data;
-        colors.add(`${d[0]! >> 4},${d[1]! >> 4},${d[2]! >> 4}`);
+/** Where the artwork sits in each export, as fractions of the image. */
+const ART_REGION = {
+  story: { x: 0.15, y: 0.14, w: 0.7, h: 0.39 },
+  square: { x: 0.08, y: 0.22, w: 0.35, h: 0.35 },
+};
+
+/**
+ * Decodes a PNG in the page and counts distinct colors on a sample grid inside
+ * the artwork area. An export that lost its image is nearly one flat color there.
+ */
+export async function artColors(page: Page, buf: Buffer, format: keyof typeof ART_REGION): Promise<number> {
+  return page.evaluate(
+    async ({ b64, region }) => {
+      const img = new Image();
+      img.src = `data:image/png;base64,${b64}`;
+      await img.decode();
+      const canvas = document.createElement("canvas");
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext("2d")!;
+      ctx.drawImage(img, 0, 0);
+      const colors = new Set<string>();
+      for (let y = 0; y < 20; y++) {
+        for (let x = 0; x < 20; x++) {
+          const px = (region.x + ((x + 0.5) / 20) * region.w) * img.naturalWidth;
+          const py = (region.y + ((y + 0.5) / 20) * region.h) * img.naturalHeight;
+          const d = ctx.getImageData(Math.floor(px), Math.floor(py), 1, 1).data;
+          colors.add(`${d[0]! >> 4},${d[1]! >> 4},${d[2]! >> 4}`);
+        }
       }
-    }
-    return colors.size;
-  }, buf.toString("base64"));
+      return colors.size;
+    },
+    { b64: buf.toString("base64"), region: ART_REGION[format] },
+  );
 }

@@ -101,7 +101,6 @@ export const PersonalityCard = forwardRef<HTMLDivElement, PersonalityCardProps>(
             <p>{a.weakness}</p>
           </section>
         </div>
-        <footer className="dna-card__footer">Just for fun. Inspired by your answers.</footer>
       </div>
     </div>
   );

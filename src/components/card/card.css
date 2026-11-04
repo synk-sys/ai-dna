@@ -56,6 +56,7 @@
   inset: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 6.3cqw 5.9cqw 5.8cqw;
 }
 
@@ -187,15 +188,6 @@
   line-height: 1.3;
 }
 
-.dna-card__footer {
-  margin-top: auto;
-  padding-top: 2cqw;
-  color: #e6dce8;
-  font-size: 2.2cqw;
-  line-height: 1.3;
-  text-align: center;
-}
-
 /* Square layout: art beside the title, insights side by side. */
 .dna-card[data-card-layout="square"] .dna-card__content {
   padding: 5.4cqw 5.9cqw;
@@ -261,8 +253,4 @@
   margin-top: 1cqw;
   font-size: 2.8cqw;
   line-height: 1.26;
-}
-.dna-card[data-card-layout="square"] .dna-card__footer {
-  font-size: 2.15cqw;
-  padding-top: 1.6cqw;
 }
