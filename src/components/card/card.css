@@ -1,0 +1,268 @@
+/*
+ * Collectible card styles. Sizes are in cqw so the same rules drive the
+ * on-screen card and the 1080px export.
+ */
+.dna-card,
+.dna-card *,
+.dna-card *::before,
+.dna-card *::after {
+  box-sizing: border-box;
+}
+
+.dna-card {
+  --dna-bg: #070b1d;
+  --dna-ink: #fff1ee;
+  position: relative;
+  isolation: isolate;
+  container-type: inline-size;
+  overflow: hidden;
+  color: var(--dna-ink);
+  background:
+    radial-gradient(ellipse at 50% 30%, color-mix(in srgb, var(--dna-surface) 18%, transparent), transparent 65%),
+    var(--dna-bg);
+  font-family: var(--font-dna-body), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.dna-card p,
+.dna-card h2,
+.dna-card h3,
+.dna-card ul {
+  margin: 0;
+}
+
+.dna-card__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  color: color-mix(in srgb, var(--dna-accent) 76%, #fff1ee);
+}
+.dna-card__frame path {
+  stroke: currentColor;
+}
+.dna-card__frame path:first-child {
+  stroke-width: 3.6;
+}
+.dna-card__frame path:last-child {
+  stroke-width: 2;
+}
+
+.dna-card__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 6.3cqw 5.9cqw 5.8cqw;
+}
+
+.dna-card__header {
+  flex: 0 0 8cqw;
+  text-align: center;
+}
+.dna-card__event {
+  font-size: 3.05cqw;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.5cqw;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dna-card .dna-card__owner {
+  margin-top: 1.25cqw;
+  font-size: 2.65cqw;
+  font-weight: 550;
+  line-height: 1.25;
+  letter-spacing: 0.12cqw;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.dna-card__hero {
+  margin-top: 1cqw;
+}
+.dna-card__artwork {
+  width: 78cqw;
+  height: 78cqw;
+  margin-inline: auto;
+}
+.dna-card__artwork img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dna-card__identity {
+  margin-top: 2cqw;
+  text-align: center;
+}
+.dna-card .dna-card__title {
+  font-family: var(--font-dna-serif), Didot, "Bodoni MT", Georgia, serif;
+  font-size: 9.5cqw;
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.35cqw;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dna-card .dna-card__subtitle {
+  margin-top: 1.2cqw;
+  color: color-mix(in srgb, var(--dna-accent) 78%, #fff1ee);
+  font-size: 3.9cqw;
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.07cqw;
+}
+.dna-card .dna-card__description {
+  margin: 1.2cqw auto 0;
+  max-width: 85cqw;
+  font-size: 3.1cqw;
+  font-weight: 400;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.dna-card .dna-card__traits {
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.8cqw;
+  list-style: none;
+  padding: 0;
+  margin-top: 2.4cqw;
+}
+.dna-card__traits li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 6.7cqw;
+  padding: 0.6cqw 0.7cqw;
+  border-radius: 100px;
+  background: color-mix(in srgb, var(--dna-accent) 25%, var(--dna-bg));
+  font-size: 2.4cqw;
+  font-weight: 650;
+  line-height: 1.15;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.dna-card__insights {
+  display: grid;
+  gap: 1.8cqw;
+  margin-top: 2.4cqw;
+}
+.dna-card__insight {
+  padding: 1.8cqw 2.5cqw;
+  border: 0.16cqw solid color-mix(in srgb, var(--dna-accent) 56%, var(--dna-bg));
+  border-radius: 1.9cqw;
+  background: linear-gradient(
+    115deg,
+    color-mix(in srgb, var(--dna-surface) 78%, var(--dna-bg)),
+    color-mix(in srgb, var(--dna-accent) 10%, var(--dna-bg))
+  );
+}
+.dna-card__insight h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.9cqw;
+  font-size: 3.2cqw;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: 0.05cqw;
+  text-transform: uppercase;
+}
+.dna-card__insight h3 span {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 3.5cqw;
+  font-weight: 400;
+  line-height: 1;
+}
+.dna-card .dna-card__insight p {
+  margin-top: 0.7cqw;
+  font-size: 2.9cqw;
+  line-height: 1.3;
+}
+
+.dna-card__footer {
+  margin-top: auto;
+  padding-top: 2cqw;
+  color: #e6dce8;
+  font-size: 2.2cqw;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Square layout: art beside the title, insights side by side. */
+.dna-card[data-card-layout="square"] .dna-card__content {
+  padding: 5.4cqw 5.9cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__hero {
+  display: grid;
+  grid-template-columns: 39cqw minmax(0, 1fr);
+  align-items: center;
+  gap: 3.2cqw;
+  min-height: 41cqw;
+  margin-top: 1.5cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__artwork {
+  width: 39cqw;
+  height: 39cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__identity {
+  margin-top: 0;
+  text-align: left;
+}
+.dna-card[data-card-layout="square"] .dna-card__title {
+  font-size: 7.2cqw;
+  line-height: 1;
+  letter-spacing: -0.25cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__prefix {
+  display: block;
+  margin-bottom: 1cqw;
+  font-size: 3.4cqw;
+  letter-spacing: 0.48cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__subtitle {
+  margin-top: 1.8cqw;
+  font-size: 3.3cqw;
+  line-height: 1.2;
+}
+.dna-card[data-card-layout="square"] .dna-card__description {
+  margin-top: 1.6cqw;
+  font-size: 2.65cqw;
+  line-height: 1.36;
+  text-wrap: pretty;
+}
+.dna-card[data-card-layout="square"] .dna-card__traits {
+  margin-top: 2.2cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__insights {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2cqw;
+  margin-top: 2.2cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__insight {
+  min-height: 20cqw;
+  padding: 1.8cqw 2cqw;
+  border-radius: 2cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__insight h3 {
+  font-size: 3cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__insight h3 span {
+  font-size: 3.3cqw;
+}
+.dna-card[data-card-layout="square"] .dna-card__insight p {
+  margin-top: 1cqw;
+  font-size: 2.8cqw;
+  line-height: 1.26;
+}
+.dna-card[data-card-layout="square"] .dna-card__footer {
+  font-size: 2.15cqw;
+  padding-top: 1.6cqw;
+}

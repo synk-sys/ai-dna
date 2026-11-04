@@ -127,7 +127,7 @@ export function ResultView() {
             <dd className="text-muted-foreground">{a.superpower}</dd>
           </div>
           <div>
-            <dt className="font-semibold">😅 Funny weakness</dt>
+            <dt className="font-semibold">😅 Plot twist</dt>
             <dd className="text-muted-foreground">{a.weakness}</dd>
           </div>
         </dl>
@@ -168,7 +168,7 @@ export function ResultView() {
 
       <section className="glass flex items-center gap-4 rounded-3xl p-5" aria-labelledby="complement-heading">
         <div className="size-20 shrink-0 overflow-hidden rounded-2xl" style={{ boxShadow: `0 0 0 1px ${complement.colors.primary}88` }}>
-          <ArchetypeArt id={complement.id} still className="size-full" />
+          <ArchetypeArt id={complement.id} className="size-full" />
         </div>
         <div>
           <h2 id="complement-heading" className="flex items-center gap-1.5 font-display font-bold">

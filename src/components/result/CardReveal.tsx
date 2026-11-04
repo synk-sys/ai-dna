@@ -48,7 +48,7 @@ export function CardReveal({
         </div>
         <div
           aria-hidden="true"
-          className="absolute inset-0 flex flex-col items-center justify-center gap-4 overflow-hidden rounded-[28px]"
+          className="absolute inset-0 flex flex-col items-center justify-center gap-4 overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",

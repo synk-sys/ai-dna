@@ -14,7 +14,7 @@ const PREWARM_DELAY_MS = 1500;
 type Busy = "download" | "share" | null;
 
 /**
- * Download and share buttons for the attendee's card. Renders full-bleed
+ * Download and share buttons for the attendee's card. Renders
  * export copies of the card off screen and turns them into PNGs.
  *
  * The PNG for the visible layout is generated in the background shortly after
@@ -120,7 +120,7 @@ export function ShareActions({ result, layout }: { result: StoredResult; layout:
         {message?.text}
       </p>
 
-      {/* Off-screen, full-bleed copies used only for image export. */}
+      {/* Off-screen copies used only for image export. */}
       <div aria-hidden="true" className="pointer-events-none fixed top-0 -left-[10000px]" inert>
         {LAYOUTS.map((l) => (
           <PersonalityCard
@@ -132,8 +132,6 @@ export function ShareActions({ result, layout }: { result: StoredResult; layout:
             nickname={result.nickname}
             description={result.personalizedDescription}
             layout={l}
-            still
-            bleed
           />
         ))}
       </div>

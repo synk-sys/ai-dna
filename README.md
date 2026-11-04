@@ -31,9 +31,9 @@ Next.js (App Router) · TypeScript · Tailwind CSS v4 · shadcn/ui conventions �
 src/
   app/                    Routes: / (landing), /quiz, /result, /privacy
   components/
-    art/ArchetypeArt.tsx  Six original SVG illustrations
+    art/ArchetypeArt.tsx  Persona artwork (webp files in public/art, 1080px and 480px)
     brand/                Logo, animated DNA helix, backdrop
-    card/                 PersonalityCard (portrait 360×640, square 400×400), ScaledCard
+    card/                 PersonalityCard and card.css (portrait 360×640, square 400×400), ScaledCard
     quiz/                 QuizFlow, AnalyzingSequence
     result/               ResultView, CardReveal, ShareActions (download and share)
     ui/                   shadcn-style primitives
@@ -69,7 +69,7 @@ An exhaustive test scores all 46,656 possible answer sets. Each archetype wins b
 
 ## Card download and sharing
 
-- **Download** renders a hidden, full-bleed copy of the card to PNG in the browser: 1080×1920 for Stories, 1080×1080 for Square. No server round trip is needed, so it works on flaky event Wi-Fi.
+- **Download** renders a hidden copy of the card to PNG in the browser: 1080×1920 for Stories, 1080×1080 for Square. No server round trip is needed, so it works on flaky event Wi-Fi.
 - **Share** opens the native share sheet with the PNG attached. The image is pre-rendered about 1.5s after the result appears, because iOS Safari rejects share calls that happen too long after the tap. If file sharing isn't supported, it shares a text link instead, and if that fails too, it copies the text to the clipboard.
 - **In-app browsers** (Instagram, Facebook, LinkedIn and others) often ignore downloads. In those, Download opens the image full screen with a "press and hold to save" prompt.
 - Share text names the personality and event only, never the nickname.

@@ -37,7 +37,7 @@ export default function LandingPage() {
                 className="overflow-hidden rounded-2xl"
                 style={{ boxShadow: `0 0 0 1px ${a.colors.primary}55`, background: a.colors.deep }}
               >
-                <ArchetypeArt id={id} still className="aspect-square w-full" />
+                <ArchetypeArt id={id} className="aspect-square w-full" />
                 <div className="px-2 py-2 text-center">
                   <div className="text-[11px] leading-tight font-semibold">
                     <span aria-hidden="true">{a.emoji} </span>
