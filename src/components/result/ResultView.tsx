@@ -105,34 +105,6 @@ export function ResultView() {
         <ShareActions result={result} layout={layout} />
       </section>
 
-      <section className="glass space-y-4 rounded-3xl p-5">
-        <div>
-          <h2 className="font-display text-xl font-bold">{a.identity}</h2>
-          <p className="mt-1 text-muted-foreground">{result.personalizedDescription}</p>
-        </div>
-        <ul className="flex flex-wrap gap-2" aria-label="Strengths">
-          {a.strengths.map((s) => (
-            <li
-              key={s}
-              className="rounded-full px-3 py-1 text-sm font-medium"
-              style={{ background: `${a.colors.primary}22`, color: a.colors.primary, border: `1px solid ${a.colors.primary}55` }}
-            >
-              {s}
-            </li>
-          ))}
-        </ul>
-        <dl className="grid gap-3 text-sm">
-          <div>
-            <dt className="font-semibold">⚡ Superpower</dt>
-            <dd className="text-muted-foreground">{a.superpower}</dd>
-          </div>
-          <div>
-            <dt className="font-semibold">😅 Plot twist</dt>
-            <dd className="text-muted-foreground">{a.weakness}</dd>
-          </div>
-        </dl>
-      </section>
-
       <section className="glass rounded-3xl p-5" aria-labelledby="mix-heading">
         <h2 id="mix-heading" className="font-display text-lg font-bold">
           Your DNA mix
