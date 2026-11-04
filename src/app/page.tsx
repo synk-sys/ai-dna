@@ -53,7 +53,6 @@ export default function LandingPage() {
       <footer className="space-y-2 text-center text-xs text-muted-foreground">
         <p>Just for fun: a reflection of your quiz answers, not a scientific assessment.</p>
         <p>
-          No account, no email.{" "}
           <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground">
             Privacy notice
           </Link>
