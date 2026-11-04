@@ -80,7 +80,7 @@ export function StartPanel() {
       ) : null}
       <form onSubmit={start} className="space-y-3" noValidate>
         <label htmlFor="nickname" className="block text-sm font-medium">
-          Name <span className="text-muted-foreground">(optional, shown on your card)</span>
+          Name <span className="text-muted-foreground">(shown on your card)</span>
         </label>
         <Input
           id="nickname"
