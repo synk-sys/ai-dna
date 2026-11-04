@@ -153,13 +153,10 @@ export function ResultView() {
         </div>
       </section>
 
-      <div className="space-y-3 text-center">
+      <div className="text-center">
         <Button variant="ghost" onClick={retake}>
           <RotateCcw /> Retake the quiz
         </Button>
-        <p className="text-xs text-muted-foreground">
-          Just for fun: a reflection of your quiz answers, not a scientific psychological assessment.
-        </p>
       </div>
     </PageShell>
   );
