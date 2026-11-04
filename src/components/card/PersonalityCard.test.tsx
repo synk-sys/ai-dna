@@ -29,9 +29,9 @@ describe("PersonalityCard", () => {
     const el = () => container.firstElementChild as HTMLElement;
     expect(el().style.width).toBe(`${CARD_SIZE.portrait.width}px`);
     expect(el().style.height).toBe(`${CARD_SIZE.portrait.height}px`);
-    rerender(<PersonalityCard archetypeId="creator" description="x" layout="square" />);
-    expect(el().dataset.cardLayout).toBe("square");
-    expect(el().style.height).toBe(`${CARD_SIZE.square.height}px`);
+    rerender(<PersonalityCard archetypeId="creator" description="x" layout="post" />);
+    expect(el().dataset.cardLayout).toBe("post");
+    expect(el().style.height).toBe(`${CARD_SIZE.post.height}px`);
   });
 
   it("renders nicknames as text, never markup", () => {

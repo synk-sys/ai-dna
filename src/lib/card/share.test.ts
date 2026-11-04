@@ -10,14 +10,14 @@ function fakeNavigator(overrides: Partial<Navigator>): Navigator {
 }
 
 describe("export sizing", () => {
-  it("exports stories at 1080×1920 and squares at 1080×1080", () => {
+  it("exports stories at 1080×1920 and posts at 1080×1350", () => {
     expect(exportSize("portrait")).toMatchObject({ width: 1080, height: 1920 });
-    expect(exportSize("square")).toMatchObject({ width: 1080, height: 1080 });
+    expect(exportSize("post")).toMatchObject({ width: 1080, height: 1350 });
   });
 
   it("names files by archetype and layout", () => {
     expect(cardFileName("builder", "portrait")).toBe("ai-dna-builder-story.png");
-    expect(cardFileName("connector", "square")).toBe("ai-dna-connector-square.png");
+    expect(cardFileName("connector", "post")).toBe("ai-dna-connector-post.png");
   });
 });
 

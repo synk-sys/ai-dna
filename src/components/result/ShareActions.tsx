@@ -8,7 +8,7 @@ import { cardFileName, renderCardPng } from "@/lib/card/export";
 import { downloadBlob, isInAppBrowser, shareCardImage, shareLink, shareText, shareUrl } from "@/lib/card/share";
 import type { StoredResult } from "@/lib/client/results";
 
-const LAYOUTS: CardLayout[] = ["portrait", "square"];
+const LAYOUTS: CardLayout[] = ["portrait", "post"];
 const PREWARM_DELAY_MS = 1500;
 
 type Busy = "download" | "share" | null;

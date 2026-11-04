@@ -21,19 +21,19 @@ test.describe("card PNG export", () => {
     await expect(page.getByText(/Card saved/)).toBeVisible();
   });
 
-  test("downloads a 1080×1080 square PNG", async ({ page }, testInfo) => {
+  test("downloads a 1080×1350 post PNG", async ({ page }, testInfo) => {
     await completeQuiz(page, "connector");
-    await page.getByRole("tab", { name: "Square" }).click();
+    await page.getByRole("tab", { name: "Post" }).click();
     const downloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: "Download" }).click();
     const download = await downloadPromise;
-    expect(download.suggestedFilename()).toBe("ai-dna-connector-square.png");
+    expect(download.suggestedFilename()).toBe("ai-dna-connector-post.png");
 
-    const path = testInfo.outputPath("square.png");
+    const path = testInfo.outputPath("post.png");
     await download.saveAs(path);
     const buf = await readFile(path);
-    expect(pngSize(buf)).toEqual({ width: 1080, height: 1080 });
-    expect(await artColors(page, buf, "square")).toBeGreaterThan(MIN_ART_COLORS);
+    expect(pngSize(buf)).toEqual({ width: 1080, height: 1350 });
+    expect(await artColors(page, buf, "post")).toBeGreaterThan(MIN_ART_COLORS);
   });
 
   test("shows an error instead of exporting a card with no art, then recovers", async ({ page }, testInfo) => {

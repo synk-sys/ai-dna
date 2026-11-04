@@ -77,7 +77,7 @@ export function ResultView() {
 
       <section aria-label="Your collectible card" className="flex flex-col items-center gap-4">
         <div role="tablist" aria-label="Card format" className="glass inline-flex rounded-full p-1 text-sm">
-          {(["portrait", "square"] as const).map((l) => (
+          {(["portrait", "post"] as const).map((l) => (
             <button
               key={l}
               role="tab"
@@ -88,7 +88,7 @@ export function ResultView() {
                 layout === l ? "bg-white text-background" : "text-muted-foreground hover:text-foreground",
               )}
             >
-              {l === "portrait" ? "Story" : "Square"}
+              {l === "portrait" ? "Story" : "Post"}
             </button>
           ))}
         </div>

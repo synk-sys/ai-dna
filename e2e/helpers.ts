@@ -23,7 +23,7 @@ export function pngSize(buf: Buffer): { width: number; height: number } {
 /** Where the artwork sits in each export, as fractions of the image. */
 const ART_REGION = {
   story: { x: 0.15, y: 0.14, w: 0.7, h: 0.39 },
-  square: { x: 0.08, y: 0.22, w: 0.35, h: 0.35 },
+  post: { x: 0.28, y: 0.2, w: 0.44, h: 0.33 },
 };
 
 /**

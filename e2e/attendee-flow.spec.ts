@@ -35,7 +35,7 @@ test("mobile layout has no horizontal scroll on attendee pages", async ({ page }
   await expectNoHorizontalScroll(page);
   await completeQuiz(page, "connector");
   await expectNoHorizontalScroll(page);
-  await page.getByRole("tab", { name: "Square" }).click();
+  await page.getByRole("tab", { name: "Post" }).click();
   await expectNoHorizontalScroll(page);
   await page.goto("/privacy");
   await expectNoHorizontalScroll(page);

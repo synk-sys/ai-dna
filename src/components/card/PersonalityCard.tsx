@@ -5,12 +5,12 @@ import { ARCHETYPES, type ArchetypeId } from "@/lib/quiz/archetypes";
 import { cn } from "@/lib/utils";
 import "./card.css";
 
-export type CardLayout = "portrait" | "square";
+export type CardLayout = "portrait" | "post";
 
 /** Intrinsic design size in CSS pixels. Exports scale these up to 1080px wide. */
 export const CARD_SIZE: Record<CardLayout, { width: number; height: number }> = {
   portrait: { width: 360, height: 640 },
-  square: { width: 400, height: 400 },
+  post: { width: 400, height: 500 },
 };
 
 /** Frame outlines, drawn in export pixels. */
@@ -22,11 +22,11 @@ const FRAMES: Record<CardLayout, { viewBox: string; paths: [string, string] }> =
       "M76 36H1004Q1004 76 1044 76V1844Q1004 1844 1004 1884H76Q76 1844 36 1844V76Q76 76 76 36Z",
     ],
   },
-  square: {
-    viewBox: "0 0 1080 1080",
+  post: {
+    viewBox: "0 0 1080 1350",
     paths: [
-      "M64 22H1016Q1016 64 1058 64V1016Q1016 1016 1016 1058H64Q64 1016 22 1016V64Q64 64 64 22Z",
-      "M76 36H1004Q1004 76 1044 76V1004Q1004 1004 1004 1044H76Q76 1004 36 1004V76Q76 76 76 36Z",
+      "M64 22H1016Q1016 64 1058 64V1286Q1016 1286 1016 1328H64Q64 1286 22 1286V64Q64 64 64 22Z",
+      "M76 36H1004Q1004 76 1044 76V1274Q1004 1274 1004 1314H76Q76 1274 36 1274V76Q76 76 76 36Z",
     ],
   },
 };

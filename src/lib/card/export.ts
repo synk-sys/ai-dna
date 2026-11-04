@@ -1,7 +1,7 @@
 import { CARD_SIZE, type CardLayout } from "@/components/card/PersonalityCard";
 import type { ArchetypeId } from "@/lib/quiz/archetypes";
 
-/** Exported images are 1080px wide: 1080×1920 for stories, 1080×1080 square. */
+/** Exported images are 1080px wide: 1080×1920 for stories, 1080×1350 for posts. */
 export const EXPORT_WIDTH = 1080;
 
 const ARTWORK_TIMEOUT_MS = 15_000;
@@ -13,7 +13,7 @@ export function exportSize(layout: CardLayout) {
 }
 
 export function cardFileName(archetypeId: ArchetypeId, layout: CardLayout): string {
-  return `ai-dna-${archetypeId}-${layout === "portrait" ? "story" : "square"}.png`;
+  return `ai-dna-${archetypeId}-${layout === "portrait" ? "story" : "post"}.png`;
 }
 
 /**
