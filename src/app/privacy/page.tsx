@@ -16,9 +16,9 @@ export default function PrivacyPage() {
         </p>
         <h2 className="font-display text-base font-bold">What we collect</h2>
         <ul className="list-disc space-y-1 pl-5">
-          <li>An optional nickname you choose.</li>
+          <li>An optional name you choose.</li>
           <li>Your six quiz answers and the resulting personality.</li>
-          <li>An anonymous, randomly generated session ID. No name, email or phone number.</li>
+          <li>An anonymous, randomly generated session ID. No email or phone number.</li>
         </ul>
         <h2 className="font-display text-base font-bold">How it&apos;s used</h2>
         <ul className="list-disc space-y-1 pl-5">
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             answers are never public.
           </li>
           <li>
-            If AI personalization is on, your answers (never your nickname) may be sent to Google&apos;s Gemini API to
+            If AI personalization is on, your answers (never your name) may be sent to Google&apos;s Gemini API to
             write a short description.
           </li>
         </ul>

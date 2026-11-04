@@ -28,7 +28,7 @@ export const nicknameSchema = z
   .max(200)
   .transform(sanitizeNickname)
   .refine((v) => v.length === 0 || /[\p{L}\p{N}\p{Extended_Pictographic}]/u.test(v), {
-    message: "Nickname needs at least one letter, number or emoji",
+    message: "Name needs at least one letter, number or emoji",
   });
 
 const answersShape = Object.fromEntries(

@@ -28,7 +28,7 @@ export function StartPanel() {
     event.preventDefault();
     const parsed = nicknameSchema.safeParse(nickname);
     if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Please choose a different nickname");
+      setError(parsed.error.issues[0]?.message ?? "Please choose a different name");
       return;
     }
     clearResult();
@@ -80,7 +80,7 @@ export function StartPanel() {
       ) : null}
       <form onSubmit={start} className="space-y-3" noValidate>
         <label htmlFor="nickname" className="block text-sm font-medium">
-          Nickname <span className="text-muted-foreground">(optional, shown on your card)</span>
+          Name <span className="text-muted-foreground">(optional, shown on your card)</span>
         </label>
         <Input
           id="nickname"

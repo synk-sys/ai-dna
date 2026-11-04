@@ -14,7 +14,7 @@ export const EVENT = {
 } as const;
 
 /** Bump when the privacy notice changes; stored with each participant. */
-export const CONSENT_VERSION = "2026-11-v1";
+export const CONSENT_VERSION = "2026-11-v2";
 
 /** Google-inspired accent colors, used sparingly for event chrome. */
 export const EVENT_ACCENTS = ["#4285F4", "#EA4335", "#FBBC04", "#34A853"] as const;

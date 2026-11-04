@@ -3,7 +3,7 @@ import { expect, type Page } from "@playwright/test";
 /** Starts the quiz from the landing page and picks `primary` for every question. */
 export async function completeQuiz(page: Page, primary = "builder", nickname = "Pixel Pioneer") {
   await page.goto("/");
-  await page.getByLabel(/Nickname/).fill(nickname);
+  await page.getByLabel(/^Name/).fill(nickname);
   await page.getByRole("button", { name: /Start the quiz/ }).click();
   await page.waitForURL("**/quiz");
   for (let i = 1; i <= 6; i++) {
