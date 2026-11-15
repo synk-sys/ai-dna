@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { DnaHelix } from "@/components/brand/DnaHelix";
-import { Button } from "@/components/ui/button";
 
 const LINES = [
   "Sequencing your curiosity genes…",
@@ -17,9 +16,8 @@ const MIN_DURATION_MS = 2800;
 const REDUCED_DURATION_MS = 700;
 
 /**
- * Short celebratory "analysis". Purely cosmetic: the result is already
- * computed, and a Skip button appears as soon as it's ready so the sequence
- * never blocks anyone from their card.
+ * Short celebratory "analysis". Purely cosmetic: it moves on by itself after
+ * a few seconds (under a second with reduced motion) once the result is ready.
  */
 export function AnalyzingSequence({ ready, onDone }: { ready: boolean; onDone: () => void }) {
   const reduce = useReducedMotion();
@@ -60,13 +58,6 @@ export function AnalyzingSequence({ ready, onDone }: { ready: boolean; onDone: (
             {LINES[line]}
           </motion.p>
         </AnimatePresence>
-      </div>
-      <div className="h-11">
-        {ready ? (
-          <Button variant="ghost" size="sm" onClick={onDone}>
-            Skip to my result
-          </Button>
-        ) : null}
       </div>
     </div>
   );
