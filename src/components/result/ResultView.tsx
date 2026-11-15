@@ -105,6 +105,10 @@ export function ResultView() {
         <ShareActions result={result} layout={layout} />
       </section>
 
+      <p className="-mb-4 text-center text-sm text-muted-foreground">
+        A fun snapshot of your preference, not a measure of your skill
+      </p>
+
       <section className="glass rounded-3xl p-5" aria-labelledby="mix-heading">
         <h2 id="mix-heading" className="font-display text-lg font-bold">
           Your DNA mix
